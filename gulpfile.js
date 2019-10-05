@@ -31,7 +31,7 @@ gulp.task('reload', function(done) {
 })
 
 gulp.task('sass', function() {
-  return gulp.src(argv + '/sass/style.sass')
+  return gulp.src(argv + '/sass/index.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     .pipe(cleanCSS())
