@@ -1,0 +1,116 @@
+@import header
+@import footer
+
+@font-face
+  font-family: "SF Pro Display Medium"
+  src: url(../assets/SF-Pro-Display-Medium.otf)
+
+.superscript
+  vertical-align: super
+  font-size: 7px
+  margin-left: 3px
+
+.visually-hidden
+  position: absolute
+  overflow: hidden
+  width: 1px
+  height: 1px
+
+body
+  margin: 0
+  padding: 0
+  font-family: "SF Pro Display Medium"
+  font-feature-settings: "palt"
+
+.unit-wrapper
+  position: relative
+  width: 100%
+  height: 500px
+  padding: 0
+  border-top: solid white 6px
+  border-bottom: solid white 6px
+  &.first
+    margin-top: 42px
+  &.black
+    background-color: black
+  &.cream
+    background-color: #FAFAFA
+
+.image-wrapper
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  z-index: 1
+
+figure.product-img
+  width: 100%
+  height: 100%
+  margin: 0
+  padding: 0
+  backgfound-repeat: no-repeat
+  background-position: center
+  background-size: cover
+
+.copy-wrapper
+  position: relative
+  text-align: center
+  z-index: 4
+  *
+    margin: 0
+  .headline
+    color: black
+    font-size: 30px
+    font-weight: bold
+    margin-top: 35px
+    margin-bottom: 5px
+    &.dark
+      color: white
+  .subhead
+    color: black
+    font-size: 16px
+    margin-bottom: 10px
+    font-weight: 500
+    line-height: 27px
+    role: presentation
+    &.dark
+      color: white
+  .price
+    font-size: 12px
+    margin: 0 50px 10px
+    role: text
+    color: #888
+    *
+      white-space: nowrap
+  .cta-links
+    color: rgb(0, 112, 201)
+    display: inline-block
+    text-align: center
+    &.dark
+      color: rgb(102, 187, 255)
+    &.white
+      color: white
+    a
+      &::after
+        content: ""
+        width: 6px
+        height: 6px
+        margin-bottom: 2px
+        display: inline-block
+        border-top: solid 2px
+        border-right: solid 2px
+        transform: rotate(45deg)
+      &:not(:first-child)
+        margin-left: 20px
+
+  
+  .headline-logo
+    height: 65px
+    margin: 40px 0 10px
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center
+    text-align: center
