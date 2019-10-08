@@ -8,6 +8,7 @@ var browserSync = require('browser-sync').create()
 var minimist = require('minimist')
 var plumber = require('gulp-plumber')
 var csscomb = require('gulp-csscomb')
+var cached = require('gulp-cached')
 
 var base = minimist(process.argv.slice(2)).base
 
@@ -34,6 +35,7 @@ gulp.task('reload', function(done) {
 
 gulp.task('sass', function() {
   return gulp.src(base + '/sass/index.sass')
+    .pipe(cached('sass'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
     // .pipe(cleanCSS())
@@ -49,6 +51,7 @@ gulp.task('sass', function() {
 gulp.task('pug', function() {
   return gulp.src(base + '/pug/index.pug')
     .pipe(plumber())
+    .pipe(cached('pug'))
     .pipe(pug())
     .pipe(gulp.dest(base))
     .pipe(notify({
@@ -59,15 +62,15 @@ gulp.task('pug', function() {
     }))
 })
 
-gulp.task('css-comb', function() {
+gulp.task('csscomb', function() {
   return gulp.src(base + '/sass/*.sass')
     .pipe(csscomb())
-    .pipe(gulp.dest('./build/css'))
+    .pipe(gulp.dest(base + '/sass-dest'))
 })
 
 gulp.task('default', gulp.parallel('browser-sync',
     function() {
-      gulp.watch(base + '/sass/*.sass', gulp.series('sass', 'reload', 'csscomb'))
+      gulp.watch(base + '/sass/*.sass', gulp.series('sass', 'reload'))
       gulp.watch(base + '/pug/*.pug', gulp.series('pug', 'reload'))
     }
   )
