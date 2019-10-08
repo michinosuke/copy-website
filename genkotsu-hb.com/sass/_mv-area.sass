@@ -1,0 +1,34 @@
+$slider-width: 60vw
+
+#mv-aria
+  display: flex
+  width: 100%
+  height: auto
+  background-color: white
+  margin-bottom: 30px
+  .slider
+    width: 70%
+    height: calc(#{$slider-width} * 1.6)
+    background-image: url(assets/slider01.png)
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+  .top-menu
+    width: calc(100% - #{$slider-width})
+    ul
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      width: 100%
+      height: 100%
+      border: solid #aaa 1px
+      color: #028738
+      li
+        display: flex
+        flex: 1
+        list-style-type: none
+        justify-content: left
+        align-items: center
+        padding-left: 10px
+        &:not(:last-child)
+          border-bottom: solid #aaa 1px

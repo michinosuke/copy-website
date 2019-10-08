@@ -1,0 +1,106 @@
+$hg-green: rgb(2, 135, 56)
+  
+header
+  background-color: white
+  padding-bottom: 10px
+  .header-box
+    display: flex
+    justify-content: space-between
+    padding: 8px
+    height: 70px
+
+    .header-title
+      display: inline-block
+      width: 90px
+      height: 90px
+      background-image: url(assets/title_logo.svg)
+      background-size: contain
+      background-repeat: no-repeat
+
+    .buttons-box
+      display: flex
+      justify-content: space-between
+      .fav-buttons-box
+        width: 180px
+        height: 100px
+        font-size: 12px
+        color: white
+        margin-right: 10px
+        .fav-button
+          display: flex
+          justify-content: center
+          width: 180px
+          height: 25px
+          background-color: $hg-green
+          margin-bottom: 5px
+          padding-top: 4px
+          border-radius: 3px
+          .fav-img
+            width: 15px
+            height: 15px
+            margin: 2px 5px 
+            background-image: url(assets/fav_img.png)
+            background-size: contain
+            background-position: center
+            background-repeat: no-repeat
+            vertical-align: bottom
+      .menu-button
+        width: 40px
+        height: 40px
+        margin: 10px
+        display: flex
+        align-items: center
+        justify-content: center
+        border: solid 1px $hg-green
+        border-radius: 4px
+        .bar-box
+          display: flex
+          flex-direction: column
+          justify-content: space-around
+          align-items: center
+          height: 70%
+          .bar
+            background-color: rgb(2, 135, 56)
+            width: 30px
+            height: 4px
+            border-radius: 2px
+  .news
+    position: relative
+    display: table
+    width: 80%
+    color: red
+    border: solid #aaa 1px
+    border-radius: 3px
+    margin: 8px auto 0
+    padding: 5px 10px 5px 45px
+    @keyframes flash
+      0%
+        opacity: 1
+      80%
+        opacity: 1
+      100%
+        opacity: 0
+    a
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 0
+      left: 0
+    .flash-contents
+      font-size: 12px
+      width: 100%
+      height: 100%
+      animation: flash 2s ease infinite alternate
+      &::before
+        content: ""
+        position: absolute
+        margin: auto
+        top: 0
+        bottom: 0
+        left: 10px
+        width: 25px
+        height: 25px
+        background-image: url(assets/ico_sawayaka.png)
+        background-position: center
+        background-repeat: no-repeat
+        background-size: contain

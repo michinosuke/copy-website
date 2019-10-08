@@ -1,0 +1,71 @@
+extends _layout
+
+block contents
+  header
+    .header-box
+      h1.header-title
+        h1.visibility-hidden 炭焼きさわやか
+      .buttons-box
+        .fav-buttons-box
+          .fav-button
+            .fav-img
+            span お気に入りの店舗
+          .fav-button: span
+            span 全店の待ち時間はこちら
+        .menu-button
+          .bar-box
+            .bar
+            .bar
+            .bar
+    .news
+      .flash-contents
+        p さわやかのハンバーグは、通販含め、さわやかの店舗以外では、一切販売しておりません。
+        a(href="#")
+
+  section#mv-aria
+    h2.visibility-hidden ナビゲーション
+    .slider
+    nav.top-menu
+      ul
+        li: span グランドメニュー
+        li: span ランチメニュー
+        li: span よくある質問
+        li: span 採用情報
+        li: span 会社案内
+        li: span 営業時間
+
+  section#favorite
+    h2.visibility-hidden お気に入りの店舗
+    .card-frame
+      .heading-frame
+        .icon.left
+        .heading
+          .star-icon
+          span お気に入りの店舗
+        .icon.right
+      .contents-frame
+        span お気に入りのお店を
+        br
+        span ここに登録できます。
+      .button お気に入り店舗を登録する
+        a(href='#')
+  
+  section#banner-area
+    ul
+      li(style='background-image: url(assets/bnr_entetsu.png)')
+        a.covered-link(href="#")
+      li(style='background-image: url(assets/bnr_sawayakabaito.png)')
+        a.covered-link(href="#")
+      li(style='background-image: url(assets/bnr_fair.png)')
+        a.covered-link(href="#")
+      li(style='background-image: url(assets/bnr_desert.png)')
+        a.covered-link(href="#")
+      li(style='background-image: url(assets/bnr_aregen.png)')
+        a.covered-link(href="#")
+      li(style='background-image: url(assets/bnr_ft_manga.png)')
+        a.covered-link(href="#")
+  
+  section#map-area
+    .map-contents-wrapper
+      h2.heading 静岡県内エリアマップ
+        span

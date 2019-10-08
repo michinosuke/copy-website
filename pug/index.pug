@@ -1,7 +1,11 @@
-doctype html
-html(lang="ja")
-head
-  meta(charset="utf-8")
-  title copy-website
-body
-  a(href="./apple.com/") apple.com
+extends _layout
+
+mixin card(title)
+  .card
+    .image(style=`background-image: url(assets/${title}.png)`)
+    h2.title #{title}
+    a.link(href=title)
+
+block contents
+  h1.top-title トレースしたサイト一覧
+  +card('apple.com')

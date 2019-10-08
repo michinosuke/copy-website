@@ -6,8 +6,10 @@ var pug = require('gulp-pug')
 var notify = require('gulp-notify')
 var browserSync = require('browser-sync').create()
 var minimist = require('minimist')
+var plumber = require('gulp-plumber')
+var csscomb = require('gulp-csscomb')
 
-var argv = minimist(process.argv.slice(2)).base
+var base = minimist(process.argv.slice(2)).base
 
 gulp.task('browser-sync', function() {
   browserSync.init({
@@ -16,7 +18,7 @@ gulp.task('browser-sync', function() {
       files: ['./**/*.*'],
       browser: "google chrome",
       server: {
-          baseDir: argv,
+          baseDir: base,
           index: "index.html"
       },
       reloadDelay: 1000,
@@ -31,11 +33,11 @@ gulp.task('reload', function(done) {
 })
 
 gulp.task('sass', function() {
-  return gulp.src(argv + '/sass/index.sass')
+  return gulp.src(base + '/sass/index.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(cleanCSS())
-    .pipe(gulp.dest(argv))
+    // .pipe(cleanCSS())
+    .pipe(gulp.dest(base))
     .pipe(notify({
       title: 'Sass compiled.',
       message: new Date(),
@@ -45,9 +47,10 @@ gulp.task('sass', function() {
 })
 
 gulp.task('pug', function() {
-  return gulp.src(argv + '/pug/index.pug')
+  return gulp.src(base + '/pug/index.pug')
+    .pipe(plumber())
     .pipe(pug())
-    .pipe(gulp.dest(argv))
+    .pipe(gulp.dest(base))
     .pipe(notify({
       title: 'Pug compiled.',
       message: new Date(),
@@ -56,10 +59,16 @@ gulp.task('pug', function() {
     }))
 })
 
+gulp.task('css-comb', function() {
+  return gulp.src(base + '/sass/*.sass')
+    .pipe(csscomb())
+    .pipe(gulp.dest('./build/css'))
+})
+
 gulp.task('default', gulp.parallel('browser-sync',
     function() {
-      gulp.watch(argv + '/sass/*.sass', setTimeout(gulp.series('sass', 'reload'), 5000))
-      gulp.watch(argv + '/pug/*.pug', setTimeout(gulp.series('pug', 'reload'), 5000))
+      gulp.watch(base + '/sass/*.sass', gulp.series('sass', 'reload', 'csscomb'))
+      gulp.watch(base + '/pug/*.pug', gulp.series('pug', 'reload'))
     }
   )
 )

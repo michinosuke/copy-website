@@ -1,0 +1,87 @@
+$hg-green: rgb(2, 135, 56)
+
+@mixin bg-contain
+  background-position: center
+  background-size: contain
+  background-repeat: no-repeat
+
+@mixin bg-cover
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+@mixin a-link
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 10
+
+a.covered-link
+  @include a-link
+
+.visibility-hidden
+  position: absolute
+  width: 1px
+  height: 1px
+  overflow: hidden
+
+*
+  // background-color: rgba(255,0,0,0.05)
+
+html
+  *
+    padding: 0
+    margin: 0
+    box-sizing: border-box
+    font-feature-settings: 'palt'
+
+
+body
+  background-image: url(assets/background.png)
+  background-size: 500px
+
+@import _header
+@import _mv-area
+@import _favorite
+
+#banner-area
+  margin-bottom: 30px
+  width: 100%
+  height: auto
+  ul
+    width: 100%
+    height: 100%
+    li
+      position: relative
+      list-style-type: none
+      width: 90%
+      height: calc(90vw / 3.5)
+      margin: 0 auto 15px
+      @include bg-cover
+
+#map-area
+  width: 100%
+  height: auto
+  .map-contents-wrapper
+    .heading
+      position: relative
+      color: white
+      font-size: 16px
+      padding: 10px 100px
+      margin: 0 auto
+      display: table
+      font-weight: normal
+      background-image: url(assets/bg_tl_left.png),url(assets/bg_tl_right.png),url(assets/bg_tl_center_lg.png)
+      background-position: left top, right top, center bottom
+      background-repeat: repeat-y, repeat-y, repeat-x
+      background-size: contain
+      span
+        @include bg-contain
+        position: absolute
+        top: 0
+        right: -10px
+        width: 60px
+        height: 60px
+        background-image: url(assets/fig_kanban.png)

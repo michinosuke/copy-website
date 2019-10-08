@@ -1,0 +1,284 @@
+a.covered-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; }
+
+.visibility-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
+
+html * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-feature-settings: 'palt'; }
+
+body {
+  background-image: url(assets/background.png);
+  background-size: 500px; }
+
+header {
+  background-color: white;
+  padding-bottom: 10px; }
+  header .header-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    height: 70px; }
+    header .header-box .header-title {
+      display: inline-block;
+      width: 90px;
+      height: 90px;
+      background-image: url(assets/title_logo.svg);
+      background-size: contain;
+      background-repeat: no-repeat; }
+    header .header-box .buttons-box {
+      display: flex;
+      justify-content: space-between; }
+      header .header-box .buttons-box .fav-buttons-box {
+        width: 180px;
+        height: 100px;
+        font-size: 12px;
+        color: white;
+        margin-right: 10px; }
+        header .header-box .buttons-box .fav-buttons-box .fav-button {
+          display: flex;
+          justify-content: center;
+          width: 180px;
+          height: 25px;
+          background-color: #028738;
+          margin-bottom: 5px;
+          padding-top: 4px;
+          border-radius: 3px; }
+          header .header-box .buttons-box .fav-buttons-box .fav-button .fav-img {
+            width: 15px;
+            height: 15px;
+            margin: 2px 5px;
+            background-image: url(assets/fav_img.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            vertical-align: bottom; }
+      header .header-box .buttons-box .menu-button {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 1px #028738;
+        border-radius: 4px; }
+        header .header-box .buttons-box .menu-button .bar-box {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          height: 70%; }
+          header .header-box .buttons-box .menu-button .bar-box .bar {
+            background-color: #028738;
+            width: 30px;
+            height: 4px;
+            border-radius: 2px; }
+  header .news {
+    position: relative;
+    display: table;
+    width: 80%;
+    color: red;
+    border: solid #aaa 1px;
+    border-radius: 3px;
+    margin: 8px auto 0;
+    padding: 5px 10px 5px 45px; }
+
+@-webkit-keyframes flash {
+  0% {
+    opacity: 1; }
+  80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes flash {
+  0% {
+    opacity: 1; }
+  80% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+    header .news a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0; }
+    header .news .flash-contents {
+      font-size: 12px;
+      width: 100%;
+      height: 100%;
+      -webkit-animation: flash 2s ease infinite alternate;
+              animation: flash 2s ease infinite alternate; }
+      header .news .flash-contents::before {
+        content: "";
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        width: 25px;
+        height: 25px;
+        background-image: url(assets/ico_sawayaka.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; }
+
+#mv-aria {
+  display: flex;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  margin-bottom: 30px; }
+  #mv-aria .slider {
+    width: 70%;
+    height: calc(60vw * 1.6);
+    background-image: url(assets/slider01.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; }
+  #mv-aria .top-menu {
+    width: calc(100% - 60vw); }
+    #mv-aria .top-menu ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      border: solid #aaa 1px;
+      color: #028738; }
+      #mv-aria .top-menu ul li {
+        display: flex;
+        flex: 1;
+        list-style-type: none;
+        justify-content: left;
+        align-items: center;
+        padding-left: 10px; }
+        #mv-aria .top-menu ul li:not(:last-child) {
+          border-bottom: solid #aaa 1px; }
+
+#favorite {
+  width: 100%;
+  height: calc(100vw / 2);
+  margin-bottom: 30px; }
+  #favorite .card-frame {
+    width: 80%;
+    height: 100%;
+    background-color: white;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+    #favorite .card-frame .heading-frame {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: auto;
+      height: 20%;
+      margin: 0 10px 10%;
+      border-bottom: dotted 2px #028738; }
+      #favorite .card-frame .heading-frame .heading {
+        display: flex;
+        justify-content: space-between; }
+        #favorite .card-frame .heading-frame .heading .star-icon {
+          background-position: center;
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 17px;
+          height: 17px;
+          vertical-align: bottom;
+          background-image: url(assets/fav_img.png); }
+        #favorite .card-frame .heading-frame .heading span {
+          color: #825839;
+          font-weight: bold;
+          font-size: 14px;
+          padding-left: 5px; }
+      #favorite .card-frame .heading-frame .icon {
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px; }
+        #favorite .card-frame .heading-frame .icon.left {
+          background-image: url(assets/ico_dots_left.png); }
+        #favorite .card-frame .heading-frame .icon.right {
+          background-image: url(assets/ico_dots_right.png); }
+    #favorite .card-frame .contents-frame {
+      width: 60%;
+      margin: 0 auto 10%;
+      font-size: 18px;
+      white-space: wrap;
+      text-align: center;
+      color: #028738; }
+    #favorite .card-frame .button {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      padding: 8px 30px;
+      font-size: 12px;
+      color: white;
+      background-image: linear-gradient(#028738 0%, #609300 100%);
+      border-radius: 5px;
+      box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7) inset, -2px -2px 3px rgba(0, 0, 0, 0.7) inset; }
+      #favorite .card-frame .button a {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10; }
+
+#banner-area {
+  margin-bottom: 30px;
+  width: 100%;
+  height: auto; }
+  #banner-area ul {
+    width: 100%;
+    height: 100%; }
+    #banner-area ul li {
+      position: relative;
+      list-style-type: none;
+      width: 90%;
+      height: calc(90vw / 3.5);
+      margin: 0 auto 15px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat; }
+
+#map-area {
+  width: 100%;
+  height: auto; }
+  #map-area .map-contents-wrapper .heading {
+    position: relative;
+    color: white;
+    font-size: 16px;
+    padding: 10px 100px;
+    margin: 0 auto;
+    display: table;
+    font-weight: normal;
+    background-image: url(assets/bg_tl_left.png), url(assets/bg_tl_right.png), url(assets/bg_tl_center_lg.png);
+    background-position: left top, right top, center bottom;
+    background-repeat: repeat-y, repeat-y, repeat-x;
+    background-size: contain; }
+    #map-area .map-contents-wrapper .heading span {
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      right: -10px;
+      width: 60px;
+      height: 60px;
+      background-image: url(assets/fig_kanban.png); }
