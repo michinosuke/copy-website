@@ -1,3 +1,9 @@
+// Usage 
+// `apple.com`というサブディレクトリで作業する場合
+// gulp --base apple.com
+// ルートディレクトリで作業する場合
+// gulp --base .
+
 var gulp = require('gulp')
 var sass = require('gulp-sass')
 var autoprefixer = require('gulp-autoprefixer')
@@ -9,8 +15,37 @@ var minimist = require('minimist')
 var plumber = require('gulp-plumber')
 var csscomb = require('gulp-csscomb')
 var cached = require('gulp-cached')
+var changedInPlace = require('gulp-changed-in-place')
+var wait = require('gulp-wait')
+var changed = require('gulp-changed')
 
 var base = minimist(process.argv.slice(2)).base
+
+var src = {
+  dir: base,
+  sass: {
+    dir: base + '/sass',
+    index: base + '/sass/index.sass',
+    all: base + '/sass/*.sass'
+  },
+  pug: {
+    dir: base + '/pug',
+    index: base + '/pug/index.pug',
+    all: base + '/pug/*.pug'
+  }
+}
+
+var tmp = {
+  dir: base + '/tmp',
+  sass: {
+    dir: base + '/tmp/sass',
+    all: base + '/tmp/sass/*.sass'
+  },
+  pug: {
+    dir: base + '/tmp/pug',
+    all: base + '/tmp/pug/*.pug'
+  }
+}
 
 gulp.task('browser-sync', function() {
   browserSync.init({
@@ -34,7 +69,7 @@ gulp.task('reload', function(done) {
 })
 
 gulp.task('sass', function() {
-  return gulp.src(base + '/sass/index.sass')
+  return gulp.src(src.sass.index)
     .pipe(cached('sass'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
@@ -49,7 +84,7 @@ gulp.task('sass', function() {
 })
 
 gulp.task('pug', function() {
-  return gulp.src(base + '/pug/index.pug')
+  return gulp.src(src.pug.index)
     .pipe(plumber())
     .pipe(cached('pug'))
     .pipe(pug())
@@ -63,15 +98,20 @@ gulp.task('pug', function() {
 })
 
 gulp.task('csscomb', function() {
-  return gulp.src(base + '/sass/*.sass')
+  return gulp.src(src.sass.all)
     .pipe(csscomb())
-    .pipe(gulp.dest(base + '/sass-dest'))
+    .pipe(gulp.dest(tmp.sass.dir))
 })
 
-gulp.task('default', gulp.parallel('browser-sync',
-    function() {
-      gulp.watch(base + '/sass/*.sass', gulp.series('sass', 'reload'))
-      gulp.watch(base + '/pug/*.pug', gulp.series('pug', 'reload'))
-    }
-  )
-)
+gulp.task('moveSassTmpToSrc', function() {
+  return gulp.src(tmp.sass.all)
+    .pipe(changed(src.sass.dir))
+    .pipe(gulp.dest(src.sass.dir))
+})
+
+gulp.task('default', gulp.parallel('browser-sync', function() {
+    gulp.watch(src.sass.all, gulp.series('sass', 'reload', 'csscomb'))
+    gulp.watch(tmp.sass.all, gulp.series('moveSassTmpToSrc'))
+    gulp.watch(src.pug.all, gulp.series('pug', 'reload'))
+  }
+))

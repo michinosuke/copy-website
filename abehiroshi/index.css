@@ -1,0 +1,76 @@
+* {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  display: flex;
+  width: 100%;
+  background-image: url(assets/abehiroshi.jpg); }
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15%;
+  height: 100vh;
+  padding-top: 20px;
+  border-right: double #555;
+  background-color: #eef; }
+  #sidebar nav ul li {
+    font-size: 12px;
+    padding: 0 0 30px 10px;
+    list-style-type: none; }
+    #sidebar nav ul li span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 4px; }
+    #sidebar nav ul li a {
+      margin-left: 5px; }
+
+#contents-area {
+  width: 85%;
+  margin-left: 15%;
+  background-size: 300px; }
+  #contents-area #contents-wrapper {
+    max-width: 1000px;
+    margin: 0 auto; }
+  #contents-area h1 {
+    font-size: 24px;
+    padding-top: 30px;
+    text-align: center;
+    color: #333; }
+  #contents-area #contents {
+    display: flex; }
+    #contents-area #contents #contents-left {
+      font-size: 12px;
+      width: 40%;
+      padding: 30px 0 0 10px; }
+      #contents-area #contents #contents-left .face-img {
+        width: 100%;
+        padding-bottom: 20px; }
+      #contents-area #contents #contents-left .profile {
+        padding: 0 15px 20px; }
+      #contents-area #contents #contents-left .profile-en {
+        padding-bottom: 20px; }
+      #contents-area #contents #contents-left .mail {
+        padding-bottom: 20px; }
+    #contents-area #contents #contents-right {
+      width: 60%;
+      margin-left: 10px; }
+      #contents-area #contents #contents-right h2 {
+        font-size: 16px;
+        font-weight: lighter;
+        text-align: center; }
+      #contents-area #contents #contents-right dl {
+        font-weight: bold; }
+        #contents-area #contents #contents-right dl dt {
+          font-size: 14px;
+          padding-top: 10px;
+          border-top: solid 1px #333; }
+        #contents-area #contents #contents-right dl dd {
+          display: block;
+          width: 80%;
+          margin: 0 10px 20px auto; }

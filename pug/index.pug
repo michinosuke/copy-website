@@ -2,10 +2,12 @@ extends _layout
 
 mixin card(title)
   .card
-    .image(style=`background-image: url(assets/${title}.png)`)
+    .image(style=`background-image: url(assets/${title}.jpg)`)
     h2.title #{title}
     a.link(href=title)
 
 block contents
   h1.top-title トレースしたサイト一覧
-  +card('apple.com')
+  #card-wrapper
+    +card('apple.com')
+    +card('abehiroshi')
