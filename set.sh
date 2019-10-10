@@ -15,7 +15,7 @@ if [ -e $1 ]; then
   exit 1
 fi
 
-mkdir $1
+mkdir -p docs/$1
 cp -r setup-template/* $1/
 echo "succeed!!"
 

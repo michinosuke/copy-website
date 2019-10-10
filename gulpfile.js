@@ -19,31 +19,24 @@ var changedInPlace = require('gulp-changed-in-place')
 var wait = require('gulp-wait')
 var changed = require('gulp-changed')
 
-var base = minimist(process.argv.slice(2)).base
+var base = process.argv.length === 4
+  ? 'docs/' + minimist(process.argv.slice(2)).base + '/'
+  : 'docs/'
 
-var src = {
-  dir: base,
+var path = {
   sass: {
-    dir: base + '/sass',
-    index: base + '/sass/index.sass',
-    all: base + '/sass/*.sass'
+    dir: base + 'sass',
+    index: base + 'sass/index.sass',
+    all: base + 'sass/*.sass',
+    tmp: {
+      dir: base + 'sass/tmp',
+      all: base + 'sass/tmp/*.sass'
+    }
   },
   pug: {
-    dir: base + '/pug',
-    index: base + '/pug/index.pug',
-    all: base + '/pug/*.pug'
-  }
-}
-
-var tmp = {
-  dir: base + '/tmp',
-  sass: {
-    dir: base + '/tmp/sass',
-    all: base + '/tmp/sass/*.sass'
-  },
-  pug: {
-    dir: base + '/tmp/pug',
-    all: base + '/tmp/pug/*.pug'
+    dir: base + 'pug',
+    index: base + 'pug/index.pug',
+    all: base + 'pug/*.pug'
   }
 }
 
@@ -59,7 +52,7 @@ gulp.task('browser-sync', function() {
       },
       reloadDelay: 1000,
       reloadOnRestart: true,
-      startPath: './index.html'
+      startPath: 'index.html'
   });
 });
 
@@ -69,7 +62,7 @@ gulp.task('reload', function(done) {
 })
 
 gulp.task('sass', function() {
-  return gulp.src(src.sass.index)
+  return gulp.src(path.sass.index)
     .pipe(cached('sass'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
@@ -79,12 +72,12 @@ gulp.task('sass', function() {
       title: 'Sass compiled.',
       message: new Date(),
       sound: 'Pop',
-      icon: './assets/icon_sass.png'
+      icon: './notify-icon/icon_sass.png'
     }))
 })
 
 gulp.task('pug', function() {
-  return gulp.src(src.pug.index)
+  return gulp.src(path.pug.index)
     .pipe(plumber())
     .pipe(cached('pug'))
     .pipe(pug())
@@ -93,25 +86,25 @@ gulp.task('pug', function() {
       title: 'Pug compiled.',
       message: new Date(),
       sound: 'Pop',
-      icon: './assets/icon_pug.png'
+      icon: './notify-icon/icon_pug.png'
     }))
 })
 
 gulp.task('csscomb', function() {
-  return gulp.src(src.sass.all)
+  return gulp.src(path.sass.all)
     .pipe(csscomb())
-    .pipe(gulp.dest(tmp.sass.dir))
+    .pipe(gulp.dest(path.sass.tmp.dir))
 })
 
 gulp.task('moveSassTmpToSrc', function() {
-  return gulp.src(tmp.sass.all)
-    .pipe(changed(src.sass.dir))
-    .pipe(gulp.dest(src.sass.dir))
+  return gulp.src(path.sass.tmp.all)
+    .pipe(changed(path.sass.dir))
+    .pipe(gulp.dest(path.sass.dir))
 })
 
-gulp.task('default', gulp.parallel('browser-sync', function() {
-    gulp.watch(src.sass.all, gulp.series('sass', 'reload', 'csscomb'))
-    gulp.watch(tmp.sass.all, gulp.series('moveSassTmpToSrc'))
-    gulp.watch(src.pug.all, gulp.series('pug', 'reload'))
+gulp.task('default', gulp.parallel('browser-sync', ['sass'], ['pug'], function() {
+    gulp.watch(path.sass.all, gulp.series('sass', 'reload', 'csscomb'))
+    gulp.watch(path.sass.tmp.all, gulp.series('moveSassTmpToSrc'))
+    gulp.watch(path.pug.all, gulp.series('pug', 'reload'))
   }
 ))
