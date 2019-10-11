@@ -1,0 +1,34 @@
+a.covered-link {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.visibility-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px; }
+
+* {
+  font-feature-settings: 'palt';
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+  * .frame {
+    width: 100%;
+    height: 500px; }
+    * .frame iframe {
+      position: absolute;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+  * .button-wrapper {
+    display: flex;
+    justify-content: space-around; }

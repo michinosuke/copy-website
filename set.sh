@@ -16,7 +16,10 @@ if [ -e $1 ]; then
 fi
 
 mkdir -p docs/$1
-cp -r setup-template/* $1/
+cp -r setup-template/* docs/$1/
 echo "succeed!!"
+
+code docs/$1/pug/index.pug
+gulp --base $1
 
 exit 0
